@@ -1,13 +1,13 @@
-package com.example.BaeminProject;
+package com.example.ShoppingmallProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BaeminProjectApplication {
+public class ShoppingmallProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BaeminProjectApplication.class, args);
+		SpringApplication.run(ShoppingmallProjectApplication.class, args);
 	}
 
 }
