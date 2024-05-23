@@ -36,8 +36,15 @@ public class GlobalExceptionHandler {
         log.info("errorMessages = {}",errorMessages);
         return  error(errorMessages,HttpStatus.BAD_REQUEST);
     }
-
+    @ExceptionHandler(DuplicateNameException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
     public ApiUtils.ApiResult<String> handleDuplicateNameException(DuplicateNameException ex){
         return error(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler({RuntimeException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiUtils.ApiResult<String> handleRuntimeException(RuntimeException ex){
+        return error(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

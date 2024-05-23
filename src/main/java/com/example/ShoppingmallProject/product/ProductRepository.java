@@ -9,7 +9,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     boolean existsByName(String name);
 
     Optional<Product> findByName(String name);
-    Optional<Product> findById(long id);
+    Optional<Product> findById(int id);
 
 //    public List<Product> findProducts(int limit, int currentPage) {
 //        // map을 string으로 바꿨다가 다시 list로 바꿈

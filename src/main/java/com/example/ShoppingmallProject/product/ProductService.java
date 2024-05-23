@@ -22,7 +22,7 @@ public class ProductService {
     @Transactional
     public Optional<Product> registerProduct(ProductDTO productDTO) {
 
-        Category category = categoryRepository.findById(productDTO.getCategoryId())
+        Category category = categoryRepository.findById((int) productDTO.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("카테고리가 존재하지 않습니다"));
         Product product = new Product(productDTO.getName(), productDTO.getPrice(), productDTO.getDescription(), category);
         if(productRepository.existsByName(product.getName())){
@@ -35,9 +35,12 @@ public class ProductService {
 
 
 
-//    public Product findProduct(int id) {
-//        return productRepository.findProduct(id);
-//    }
+    public ProductDTO findProduct(int id) {
+        Product resultProduct =  productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당 상품이 존재하지 않습니다"));
+
+        return resultProduct.convertToDTO();
+    }
 
 //    public List<Product> findProducts(int limit, int currentPage) {
 //        return productRepository.findProducts(limit, currentPage);

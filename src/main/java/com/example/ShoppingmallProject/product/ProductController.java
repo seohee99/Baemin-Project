@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.example.ShoppingmallProject.utill.ApiUtils.error;
 import static com.example.ShoppingmallProject.utill.ApiUtils.success;
 
 @RestController
@@ -25,11 +26,19 @@ public class ProductController {
 
     // 상품 개별 등록
     @PostMapping("/products")
-    public ApiUtils.ApiResult registerProduct(@Valid @RequestBody ProductDTO productDTO){
+    public ApiUtils.ApiResult<Long> registerProduct(@Valid @RequestBody ProductDTO productDTO){
         Optional<Product> savedproduct = productService.registerProduct(productDTO);
         log.info(savedproduct.toString());
 
         return success(savedproduct.get().getId());
+    }
+
+    // 상품 개별 조회
+    @GetMapping("/products/{id}")
+    public ApiUtils.ApiResult<ProductDTO> findProduct(@PathVariable(value="id")  int id){
+        ProductDTO resultProduct = productService.findProduct(id);
+        log.info("resultProduct = {}", resultProduct.toString());
+        return success(resultProduct);
     }
 
 
@@ -57,24 +66,7 @@ public class ProductController {
 //
 //    }
 //
-//    // 상품 개별 조회
-//    @GetMapping("/products/{id}")
-//    public ResponseEntity<Product> findProduct(@PathVariable(value="id")  int id){
-//        if(!Validator.isNumber(id)) {
-//            // TODO log INFO 레벨 id type
-////            Logger log = LoggerFactory.getLogger(ProductController );
-//            log.info(id + "");
-//            log.trace(id + "");
-//
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//
-//
-//        Product resultProduct = productService.findProduct(id);
-//        if(resultProduct == null)
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        return new ResponseEntity<>(resultProduct,HttpStatus.OK);
-//    }
+
 //
 //    // 상품 개별 삭제
 //    @DeleteMapping("/products/{id}")
