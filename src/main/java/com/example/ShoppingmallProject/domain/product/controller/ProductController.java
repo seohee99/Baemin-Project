@@ -1,20 +1,15 @@
-package com.example.ShoppingmallProject.product;
+package com.example.ShoppingmallProject.domain.product.controller;
 
 
+import com.example.ShoppingmallProject.domain.product.dto.ProductDTO;
+import com.example.ShoppingmallProject.domain.product.entity.Product;
+import com.example.ShoppingmallProject.domain.product.service.ProductServiceImpl;
 import com.example.ShoppingmallProject.utill.ApiUtils;
-import com.example.ShoppingmallProject.utill.Validator;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import static com.example.ShoppingmallProject.utill.ApiUtils.error;
 import static com.example.ShoppingmallProject.utill.ApiUtils.success;
 
 @RestController
@@ -22,15 +17,15 @@ import static com.example.ShoppingmallProject.utill.ApiUtils.success;
 @Slf4j
 public class ProductController {
 
-    ProductService productService;
+    ProductServiceImpl productService;
 
     // 상품 개별 등록
     @PostMapping("/products")
     public ApiUtils.ApiResult<Long> registerProduct(@Valid @RequestBody ProductDTO productDTO){
-        Optional<Product> savedproduct = productService.registerProduct(productDTO);
+        Product savedproduct = productService.registerProduct(productDTO);
         log.info(savedproduct.toString());
 
-        return success(savedproduct.get().getId());
+        return success(savedproduct.getId());
     }
 
     // 상품 개별 조회

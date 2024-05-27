@@ -1,7 +1,9 @@
-package com.example.ShoppingmallProject.product;
+package com.example.ShoppingmallProject.domain.product.entity;
 
-import com.example.ShoppingmallProject.category.Category;
+import com.example.ShoppingmallProject.domain.category.entity.Category;
+import com.example.ShoppingmallProject.domain.product.dto.ProductDTO;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Product")
+@AllArgsConstructor
 public class Product {
 
     @Id

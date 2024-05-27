@@ -1,7 +1,7 @@
-package com.example.ShoppingmallProject.product;
+package com.example.ShoppingmallProject.domain.product.repository;
 
+import com.example.ShoppingmallProject.domain.product.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 

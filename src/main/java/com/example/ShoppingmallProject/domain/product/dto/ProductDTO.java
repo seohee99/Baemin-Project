@@ -1,6 +1,8 @@
-package com.example.ShoppingmallProject.product;
+package com.example.ShoppingmallProject.domain.product.dto;
 
 
+import com.example.ShoppingmallProject.domain.category.entity.Category;
+import com.example.ShoppingmallProject.domain.product.entity.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,5 +28,9 @@ public class ProductDTO {
     private String description;
     @JsonProperty("category_id")
     private long categoryId;
+
+    public Product convertToEntity(Category category){
+        return new Product(id, name, price, description, category);
+    }
 
 }

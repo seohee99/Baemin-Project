@@ -1,6 +1,6 @@
-package com.example.ShoppingmallProject.category;
+package com.example.ShoppingmallProject.domain.category.entity;
 
-import com.example.ShoppingmallProject.product.Product;
+import com.example.ShoppingmallProject.domain.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
